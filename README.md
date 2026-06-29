@@ -62,4 +62,4 @@ https://<github-user>.github.io/time-tracker-pwa/
 ## Version
 
 Aktuelle App-Version: `3.0.0`
-Service Worker Cache: `time-tracker-v19`
+Service Worker Cache: `time-tracker`
