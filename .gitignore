@@ -1,0 +1,7 @@
+.DS_Store
+__MACOSX/
+qa/__pycache__/
+*.log
+*.tmp
+*.bak
+time-tracker-backup_*.json
