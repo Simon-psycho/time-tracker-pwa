@@ -9,6 +9,7 @@ Eine installierbare Progressive Web App zur Arbeitszeiterfassung mit Kunden, Pro
 - Projekt-Schnellauswahl mit den letzten 10 Projekten
 - Pausenlogik mit Tagesregel
 - Kalenderbasierte Monatsübersicht mit antippbaren Tagen und Detailansicht
+- Kompakter Kalender ohne Überdeckung durch die mobile Bottom-Navigation
 - Kunden- und Projektfilter in der Monatsübersicht
 - Urlaub und Krankenstand als Abwesenheiten
 - Aufgeräumtes Statistik-Dashboard mit Bereichen für Überblick, Projekte, Zeiten und Abwesenheiten
@@ -79,5 +80,5 @@ https://github.com/Simon-psycho/time-tracker-pwa
 
 ## Version
 
-Aktuelle App-Version: `3.2.0`
-Service Worker Cache: `time-tracker-v20`
+Aktuelle App-Version: `3.2.1`
+Service Worker Cache: `time-tracker-v21`

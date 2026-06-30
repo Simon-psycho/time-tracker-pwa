@@ -120,10 +120,10 @@ check('id="moreActions"' in html and 'Export' in html and 'Backup' in html, "Meh
 # V2.6 UX upgrade: polished Today, grouped/filterable Month, sectioned More hub.
 check('id="heroProgressPercent"' in html and 'id="heroRemaining"' in html and 'id="heroSession"' in html,
       "Today hero does not expose prominent percent/remaining/session metrics")
-check('id="todayInsightCard"' in html and 'id="todayEntryCount"' in html and 'id="todayPauseTotal"' in html,
-      "Today quick insight card missing")
-check('function updateTodayInsights' in html and 'todayInsightCard' in html,
-      "Today dashboard insights are not updated from JS")
+check('id="todayInsightCard"' not in html and 'id="todayEntryCount"' not in html and 'id="todayPauseTotal"' not in html,
+      "redundant Today quick insight card must be removed")
+check('function updateTodayInsights' not in html,
+      "removed Today quick insight card still has dead JS updater")
 check('id="monthSummary"' in html and 'id="monthProjectFilter"' in html,
       "Month summary and project filter controls missing")
 check('function getSelectedMonthProjectFilter' in html and 'function populateMonthProjectFilter' in html,
@@ -153,8 +153,8 @@ check('.more-actions' not in html and '.form-grid' not in html and '.footer-btn'
 # V2.6.1 Today ordering and project-card polish.
 check('id="projectCard"' in html and 'project-card-head' in html and 'input-shell project-input-shell' in html,
       "polished project card structure missing")
-check(html.find('id="projectCard"') != -1 and html.find('id="todayInsightCard"') != -1 and html.find('id="projectCard"') < html.find('id="todayInsightCard"'),
-      "Heute im Überblick card must sit below the project card")
+check('id="projectCard"' in html and 'id="status"' in html and html.find('id="projectCard"') < html.find('id="status"'),
+      "Heute tab must keep project card before status after removing redundant overview")
 check('pause-row' in html and 'project-note' in html and 'pause-input-shell' in html,
       "project card pause layout missing")
 check('project-recent-dropdown' in html and 'project-recent-list' in html and 'recentProjectsSummary' in html,
@@ -221,6 +221,18 @@ check('id="companyName"' in html and 'id="companyLogoInput"' in html and 'functi
       "company profile/logo settings for professional reports missing")
 check("'Kunde'" in html and 'companyLogoData' in html and 'doc.addImage' in html,
       "professional customer/company PDF report support missing")
+
+# V3.2.1 Cleanup/fine-tuning.
+check("APP_VERSION = '3.2.1'" in html and 'sw.js?v=21' in html and 'time-tracker-v21' in sw,
+      "v3.2.1 version/service-worker bump missing")
+check('id="todayInsightCard"' not in html and 'Heute im Überblick' not in html and 'function updateTodayInsights' not in html,
+      "redundant Heute im Überblick card/function still present")
+check('--toolbar-safe-bottom' in html and 'month-content' in html and 'padding-bottom:calc' in html and 'function ensureMonthDetailVisible' in html,
+      "bottom toolbar safe spacing for month content missing")
+check('.month-day-hours{display:none' in html and 'min-height:28px' in html,
+      "calendar is not compact enough to avoid toolbar overlap")
+check('TODO' not in html and 'FIXME' not in html and 'debugger' not in html and 'console.log' not in html,
+      "debug/TODO leftovers found in production HTML")
 
 # Service worker must clean up old caches and version assets.
 check(re.search(r'time-tracker-v\d+', sw) is not None, "service worker cache version not bumped")

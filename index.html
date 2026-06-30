@@ -19,10 +19,11 @@
     :root {
       --bg:#0f172a;--card:#1e293b;--accent:#38bdf8;--accent-dark:#0ea5e9;
       --text:#e5e7eb;--muted:#94a3b8;--danger:#ef4444;--radius:18px;
+      --toolbar-safe-bottom:calc(78px + env(safe-area-inset-bottom));
     }
     *{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont}
-    html{background:#020617;min-height:100%;min-height:100dvh}
-    body{margin:0;background:var(--bg);color:var(--text);display:flex;justify-content:center;min-height:100vh;min-height:100dvh;padding:calc(14px + env(safe-area-inset-top)) 12px calc(108px + env(safe-area-inset-bottom))}
+    html{background:#020617;min-height:100%;min-height:100dvh;scroll-padding-bottom:var(--toolbar-safe-bottom)}
+    body{margin:0;background:var(--bg);color:var(--text);display:flex;justify-content:center;min-height:100vh;min-height:100dvh;padding:calc(14px + env(safe-area-inset-top)) 12px calc(18px + var(--toolbar-safe-bottom))}
     .app{width:100%;max-width:390px}
     .topbar{display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:10px}
     /* iOS-like Separator mit seitlichem Einzug */
@@ -195,7 +196,7 @@
     }
     body::before{content:"";position:fixed;inset:0;background:#020617;z-index:-2}
     .app{max-width:430px}
-    .app-main{padding-bottom:6px}
+    .app-main{padding-bottom:calc(var(--toolbar-safe-bottom) + 10px)}
     .tab-panel[hidden]{display:none!important}
     .tab-panel{animation:tabFade .16s ease}
     @keyframes tabFade{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
@@ -203,9 +204,9 @@
     .section-card strong{display:block;font-size:1.05rem;color:#f8fafc;margin-bottom:4px}
     .section-card p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.4}
     .month-tab-card{margin-top:0}
-    .bottom-toolbar{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(430px, calc(100% - 22px));display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px;border-radius:26px;background:rgba(15,23,42,.92);border:1px solid rgba(148,163,184,.20);box-shadow:0 18px 48px rgba(2,6,23,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);z-index:35}
-    .tab-btn{border:none;border-radius:18px;background:transparent;color:#94a3b8;padding:8px 4px 7px;font-size:.72rem;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;min-width:0}
-    .tab-btn .tab-icon{font-size:1.16rem;line-height:1}
+    .bottom-toolbar{position:fixed;left:50%;bottom:calc(6px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(430px, calc(100% - 22px));display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:6px;border-radius:22px;background:rgba(15,23,42,.92);border:1px solid rgba(148,163,184,.20);box-shadow:0 18px 48px rgba(2,6,23,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);z-index:35}
+    .tab-btn{border:none;border-radius:16px;background:transparent;color:#94a3b8;padding:6px 4px 5px;font-size:.68rem;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;min-width:0}
+    .tab-btn .tab-icon{font-size:1.02rem;line-height:1}
     .tab-btn.active,.tab-btn[aria-selected="true"]{background:linear-gradient(135deg, rgba(56,189,248,.26), rgba(14,165,233,.13));color:#e0f2fe;box-shadow:inset 0 0 0 1px rgba(56,189,248,.22)}
     .tab-btn:active{transform:scale(.98)}
     .hero-card{
@@ -314,22 +315,14 @@
     .hero-pill span{display:block;color:#94a3b8;font-size:.74rem;font-weight:750;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
     .hero-pill strong{display:block;color:#f8fafc;font-size:1.04rem;letter-spacing:-.02em}
     .primary-action{min-height:64px}
-    .today-insight-card{border:1px solid rgba(56,189,248,.16);background:linear-gradient(180deg,rgba(30,41,59,.86),rgba(15,23,42,.74));box-shadow:0 14px 32px rgba(2,6,23,.22)}
-    .insight-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}
-    .insight-head strong{font-size:1.02rem;color:#f8fafc}
-    .insight-head span{color:#94a3b8;font-size:.82rem}
-    .today-insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-    .insight-mini{background:rgba(2,6,23,.32);border:1px solid rgba(148,163,184,.12);border-radius:15px;padding:10px 9px;min-width:0}
-    .insight-mini span{display:block;color:#94a3b8;font-size:.72rem;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .insight-mini strong{display:block;color:#e0f2fe;font-size:.98rem}
     .month-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     .month-select{background:#020617;color:var(--text);border:1px solid #334155;border-radius:12px;padding:8px 10px;min-height:38px}
-    .month-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0 10px}
+    .month-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0 9px}
     .month-summary-card{background:rgba(2,6,23,.34);border:1px solid rgba(148,163,184,.14);border-radius:14px;padding:8px 7px;min-width:0}
     .month-summary-card span{display:block;color:#94a3b8;font-size:.66rem;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .month-summary-card strong{display:block;color:#e0f2fe;font-size:.96rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .month-summary-card small{display:block;color:#64748b;font-size:.62rem;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .month-filter-card{background:rgba(15,23,42,.58);border:1px solid rgba(148,163,184,.12);border-radius:18px;padding:12px;margin-bottom:12px}
+    .month-filter-card{background:rgba(15,23,42,.58);border:1px solid rgba(148,163,184,.12);border-radius:18px;padding:10px;margin-bottom:10px}
     .month-filter-card label{margin-bottom:7px}
     .month-filter-card select{width:100%;margin:0}
     .month-day-group{margin:14px 0 18px}
@@ -338,26 +331,27 @@
     .month-day-header span{color:#bae6fd;background:rgba(56,189,248,.13);border:1px solid rgba(56,189,248,.22);border-radius:999px;padding:5px 8px;font-size:.78rem;font-weight:800}
     .month-filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .month-filter-grid label{margin-bottom:7px}
-    .calendar-legend{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px;color:#94a3b8;font-size:.78rem}
-    .calendar-legend span{display:inline-flex;align-items:center;gap:5px;background:rgba(2,6,23,.28);border:1px solid rgba(148,163,184,.12);border-radius:999px;padding:5px 8px}
+    .calendar-legend{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 7px;color:#94a3b8;font-size:.72rem}
+    .calendar-legend span{display:inline-flex;align-items:center;gap:5px;background:rgba(2,6,23,.28);border:1px solid rgba(148,163,184,.12);border-radius:999px;padding:4px 7px}
     .legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
     .legend-work{background:#38bdf8}.legend-vacation{background:#22c55e}.legend-sick{background:#fb923c}
-    .month-calendar-shell{background:rgba(15,23,42,.54);border:1px solid rgba(148,163,184,.14);border-radius:22px;padding:10px;box-shadow:0 12px 26px rgba(2,6,23,.20)}
-    .month-calendar-weekdays,.month-calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-    .month-calendar-weekdays{margin-bottom:6px;color:#7dd3fc;font-size:.68rem;font-weight:900;text-align:center;text-transform:uppercase;letter-spacing:.05em}
-    .month-day-placeholder{min-height:44px;border-radius:14px;background:rgba(2,6,23,.14);border:1px dashed rgba(148,163,184,.08)}
-    .month-day-cell{position:relative;min-height:44px;border:none;border-radius:14px;background:rgba(2,6,23,.34);border:1px solid rgba(148,163,184,.14);color:#e2e8f0;padding:5px 4px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:2px;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.01)}
+    .month-calendar-shell{background:rgba(15,23,42,.54);border:1px solid rgba(148,163,184,.14);border-radius:22px;padding:6px;box-shadow:0 12px 26px rgba(2,6,23,.20)}
+    .month-calendar-weekdays,.month-calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+    .month-calendar-weekdays{margin-bottom:5px;color:#7dd3fc;font-size:.64rem;font-weight:900;text-align:center;text-transform:uppercase;letter-spacing:.045em}
+    .month-day-placeholder{min-height:28px;border-radius:11px;background:rgba(2,6,23,.14);border:1px dashed rgba(148,163,184,.08)}
+    .month-day-cell{position:relative;min-height:28px;border:none;border-radius:11px;background:rgba(2,6,23,.34);border:1px solid rgba(148,163,184,.14);color:#e2e8f0;padding:3px 4px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:2px;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.01)}
     .month-day-cell.has-entry{background:linear-gradient(160deg,rgba(14,165,233,.18),rgba(2,6,23,.42));border-color:rgba(56,189,248,.28)}
     .month-day-cell.has-vacation{border-color:rgba(34,197,94,.38)}
     .month-day-cell.has-sick{border-color:rgba(251,146,60,.42)}
     .month-day-cell.today{box-shadow:0 0 0 2px rgba(125,211,252,.38)}
     .month-day-cell.selected{background:linear-gradient(145deg,rgba(56,189,248,.36),rgba(15,23,42,.72));border-color:rgba(125,211,252,.72)}
-    .month-day-number{font-weight:950;font-size:.86rem;color:#f8fafc;line-height:1}
-    .month-day-hours{font-size:.64rem;color:#bae6fd;font-weight:850;font-variant-numeric:tabular-nums;line-height:1}
+    .month-day-number{font-weight:950;font-size:.78rem;color:#f8fafc;line-height:1}
+    .month-day-hours{display:none;font-size:.64rem;color:#bae6fd;font-weight:850;font-variant-numeric:tabular-nums;line-height:1}
     .month-day-project{display:none;font-size:.67rem;color:#94a3b8;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .month-day-dots{display:flex;gap:3px;margin-top:auto}
-    .month-day-dot{width:6px;height:6px;border-radius:50%;background:#38bdf8}.month-day-dot.vacation{background:#22c55e}.month-day-dot.sick{background:#fb923c}
-    .month-day-detail{margin-top:12px;background:rgba(30,41,59,.70);border:1px solid rgba(148,163,184,.14);border-radius:22px;padding:12px}
+    .month-day-dots{position:absolute;right:4px;bottom:4px;display:flex;gap:2px;margin:0}
+    .month-day-dot{width:5px;height:5px;border-radius:50%;background:#38bdf8}.month-day-dot.vacation{background:#22c55e}.month-day-dot.sick{background:#fb923c}
+    .month-day-detail{margin-top:12px;background:rgba(30,41,59,.70);border:1px solid rgba(148,163,184,.14);border-radius:22px;padding:12px;scroll-margin-bottom:var(--toolbar-safe-bottom)}
+    .month-content{padding-bottom:calc(var(--toolbar-safe-bottom) + 18px)}
     .month-detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}.month-detail-head strong{color:#f8fafc}.month-detail-head span{color:#bae6fd;font-size:.84rem;font-weight:850}
     .month-detail-empty{color:#94a3b8;background:rgba(2,6,23,.28);border:1px dashed rgba(148,163,184,.16);border-radius:16px;padding:12px;font-size:.88rem}
     .client-field{position:relative;margin-bottom:12px}
@@ -397,7 +391,7 @@
     .vacation-option{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:12px;border-radius:16px;background:rgba(2,6,23,.30);border:1px solid rgba(148,163,184,.12)}
     .vacation-option span{font-size:.92rem;color:#e2e8f0;font-weight:700}
     .vacation-preview{color:#bbf7d0;background:rgba(34,197,94,.10);border:1px solid rgba(34,197,94,.18);border-radius:15px;padding:10px 11px;margin-top:8px;font-size:.84rem;line-height:1.35}
-    @media (max-width:360px){.mini-stats,.stats-kpi-grid,.stats-chart-row,.entry-meta,.today-insight-grid,.month-filter-grid,.more-section-actions,.pause-row,#vacationModal .date-grid{grid-template-columns:1fr}.month-summary-grid{grid-template-columns:repeat(2,1fr)}.hero-time{font-size:3.15rem}.hero-pills{grid-template-columns:1fr}.month-calendar-weekdays,.month-calendar-grid{gap:4px}.month-day-cell,.month-day-placeholder{min-height:42px;padding:4px 3px}.stats-segmented{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:360px){.mini-stats,.stats-kpi-grid,.stats-chart-row,.entry-meta,.month-filter-grid,.more-section-actions,.pause-row,#vacationModal .date-grid{grid-template-columns:1fr}.month-summary-grid{grid-template-columns:repeat(2,1fr)}.hero-time{font-size:3.15rem}.hero-pills{grid-template-columns:1fr}.month-calendar-weekdays,.month-calendar-grid{gap:3px}.month-day-cell,.month-day-placeholder{min-height:30px;padding:3px}.stats-segmented{grid-template-columns:repeat(2,1fr)}}
 
   </style>
 
@@ -483,17 +477,6 @@
       </div>
     </div>
   </div>
-
-  <section id="todayInsightCard" class="card today-insight-card" aria-label="Heute Schnellübersicht">
-    <div class="insight-head">
-      <div><strong>Heute im Überblick</strong><br><span>Einträge, Pause und Durchschnitt auf einen Blick.</span></div>
-    </div>
-    <div class="today-insight-grid">
-      <div class="insight-mini"><span>Einträge</span><strong id="todayEntryCount">0</strong></div>
-      <div class="insight-mini"><span>Pause</span><strong id="todayPauseTotal">00:00</strong></div>
-      <div class="insight-mini"><span>Ø Eintrag</span><strong id="todayAverageEntry">00:00</strong></div>
-    </div>
-  </section>
 
   <div id="status" class="status"></div>
 
@@ -920,7 +903,7 @@
 </div>
 
 <script>
-const APP_VERSION = '3.2.0';
+const APP_VERSION = '3.2.1';
 function LS(key, fallback = null){
   try{
     const raw = localStorage.getItem(key);
@@ -1480,24 +1463,6 @@ function updateDashboard(){
     ? `Läuft seit ${fmtHMFromMs(Number(run.start))}${run.project ? ` · ${sanitizeProject(run.project)}` : ''}${runningSession.requestedPause ? ` · Pause ${runningSession.requestedPause} min` : ''}`
     : (delta >= 0 && totalToday > 0 ? `Ziel erreicht · ${fmt(delta)} über Soll` : (project.value ? `${sanitizeProject(project.value)} bereit` : 'Projekt wählen und starten'));
 
-  const insightToday = running ? {...today, pause: today.pause + runningSession.pause} : today;
-  updateTodayInsights(insightToday, runningMin, totalToday, safeTarget);
-}
-
-function updateTodayInsights(today, runningMin = 0, totalToday = null, safeTarget = 8*60){
-  const card = document.getElementById('todayInsightCard');
-  if(!card) return;
-  const entries = today && Array.isArray(today.entries) ? today.entries : [];
-  const work = Number(today && today.work || 0);
-  const pauseMin = Number(today && today.pause || 0);
-  const total = Number.isFinite(Number(totalToday)) ? Number(totalToday) : work + Number(runningMin || 0);
-  const entryCountEl = document.getElementById('todayEntryCount');
-  const pauseTotalEl = document.getElementById('todayPauseTotal');
-  const avgEl = document.getElementById('todayAverageEntry');
-  if(entryCountEl) entryCountEl.textContent = String(entries.length);
-  if(pauseTotalEl) pauseTotalEl.textContent = fmt(pauseMin);
-  if(avgEl) avgEl.textContent = fmt(entries.length ? Math.round(work / entries.length) : 0);
-  card.dataset.progress = String(Math.round((total / Math.max(1, safeTarget)) * 100));
 }
 
 function toggleWork(){
@@ -2592,9 +2557,24 @@ function renderMonthDayDetail(dateISO, rows){
   dayRows.forEach(({e,idx})=> detail.appendChild(createMonthEntryCard(e, idx)));
 }
 
+function ensureMonthDetailVisible(){
+  const detail = document.getElementById('monthDayDetail');
+  const toolbar = document.getElementById('bottomToolbar');
+  if(!detail || !toolbar) return;
+  const detailRect = detail.getBoundingClientRect();
+  const toolbarRect = toolbar.getBoundingClientRect();
+  const overlap = detailRect.bottom - toolbarRect.top;
+  if(overlap > 0){
+    const top = Math.max(0, window.scrollY + overlap + 16);
+    try{ window.scrollTo({top, behavior:'smooth'}); }
+    catch(_){ window.scrollTo(0, top); }
+  }
+}
+
 function selectMonthDay(dateISO){
   selectedMonthDay = isValidDateISO(dateISO) ? dateISO : '';
   renderSelectedMonth();
+  requestAnimationFrame(()=>requestAnimationFrame(ensureMonthDetailVisible));
 }
 
 function renderSelectedMonth(){
@@ -3216,7 +3196,7 @@ try{ updateBackupStatusUI(); }catch(_){ }
 try{ syncEditDatePretty(); syncEditTimeDisplays(); }catch(_){ }
 if('serviceWorker' in navigator){
   window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('./sw.js?v=20').catch((error)=>console.warn('Service Worker registration failed', error));
+    navigator.serviceWorker.register('./sw.js?v=21').catch((error)=>console.warn('Service Worker registration failed', error));
   });
 }
 </script>
