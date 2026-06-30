@@ -175,7 +175,7 @@ check('vacation-entry-card' in html and 'Ganztägiger Urlaub' in html,
       "month overview does not render vacation entries as dedicated cards")
 check('function updateRunningPause' in html and 'pause.oninput' in html and 'getRunningSessionTotals' in html,
       "pause cannot be updated while a timer is running")
-check('[project].forEach' in html and '[project, pause].forEach' not in html,
+check('[project, client].forEach' in html and '[project, pause].forEach' not in html,
       "running state still disables pause input")
 
 # V2.8.0 Absence feature: vacation + sick leave share one safe flow.
@@ -203,6 +203,24 @@ check('stats-chart-bar' in html and 'stats-progress-bar' in html and 'function r
       "statistics bar chart renderer/CSS missing")
 check('function getStatsRangeInfo' in html and 'function buildStatsBuckets' in html and 'function renderStatsInsights' in html,
       "statistics aggregation helpers missing")
+
+# V3.1.0 Mobile UI + business upgrade.
+check('viewport-fit=cover' in html and '100dvh' in html and 'safe-area-inset-top' in html,
+      "iPhone safe-area/full-background hardening missing")
+check('id="monthCalendar"' in html and 'month-calendar-grid' in html and 'id="monthDayDetail"' in html,
+      "calendar-style month overview/detail panel missing")
+check('function buildMonthCalendar' in html and 'function selectMonthDay' in html and 'month-day-cell' in html,
+      "month calendar rendering/select helpers missing")
+check('id="statsSegmentedControl"' in html and 'data-stats-section="overview"' in html and 'function setStatsSection' in html,
+      "segmented statistics dashboard redesign missing")
+check('id="client"' in html and 'id="editClient"' in html and 'function sanitizeClient' in html,
+      "client/customer fields and sanitizer missing")
+check('id="monthClientFilter"' in html and 'function getSelectedMonthClientFilter' in html,
+      "month customer filter missing")
+check('id="companyName"' in html and 'id="companyLogoInput"' in html and 'function getCompanyProfile' in html,
+      "company profile/logo settings for professional reports missing")
+check("'Kunde'" in html and 'companyLogoData' in html and 'doc.addImage' in html,
+      "professional customer/company PDF report support missing")
 
 # Service worker must clean up old caches and version assets.
 check(re.search(r'time-tracker-v\d+', sw) is not None, "service worker cache version not bumped")

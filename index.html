@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Time Tracker</title>
 
   <meta name="theme-color" content="#0f172a" />
@@ -21,7 +21,8 @@
       --text:#e5e7eb;--muted:#94a3b8;--danger:#ef4444;--radius:18px;
     }
     *{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont}
-    body{margin:0;background:var(--bg);color:var(--text);display:flex;justify-content:center;padding:calc(14px + env(safe-area-inset-top)) 12px calc(108px + env(safe-area-inset-bottom))}
+    html{background:#020617;min-height:100%;min-height:100dvh}
+    body{margin:0;background:var(--bg);color:var(--text);display:flex;justify-content:center;min-height:100vh;min-height:100dvh;padding:calc(14px + env(safe-area-inset-top)) 12px calc(108px + env(safe-area-inset-bottom))}
     .app{width:100%;max-width:390px}
     .topbar{display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:10px}
     /* iOS-like Separator mit seitlichem Einzug */
@@ -186,10 +187,13 @@
 
     /* ===== V2.1 Premium Mobile Dashboard ===== */
     body{
+      background-color:#020617;
       background:
         radial-gradient(circle at 50% -10%, rgba(56,189,248,.22), transparent 34%),
         linear-gradient(180deg, #020617 0%, #0f172a 48%, #111827 100%);
+      background-attachment:fixed;
     }
+    body::before{content:"";position:fixed;inset:0;background:#020617;z-index:-2}
     .app{max-width:430px}
     .app-main{padding-bottom:6px}
     .tab-panel[hidden]{display:none!important}
@@ -320,11 +324,11 @@
     .insight-mini strong{display:block;color:#e0f2fe;font-size:.98rem}
     .month-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     .month-select{background:#020617;color:var(--text);border:1px solid #334155;border-radius:12px;padding:8px 10px;min-height:38px}
-    .month-summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0 12px}
-    .month-summary-card{background:rgba(2,6,23,.34);border:1px solid rgba(148,163,184,.14);border-radius:16px;padding:11px 12px}
-    .month-summary-card span{display:block;color:#94a3b8;font-size:.74rem;margin-bottom:5px}
-    .month-summary-card strong{display:block;color:#e0f2fe;font-size:1.08rem}
-    .month-summary-card small{display:block;color:#64748b;font-size:.72rem;margin-top:3px}
+    .month-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0 10px}
+    .month-summary-card{background:rgba(2,6,23,.34);border:1px solid rgba(148,163,184,.14);border-radius:14px;padding:8px 7px;min-width:0}
+    .month-summary-card span{display:block;color:#94a3b8;font-size:.66rem;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .month-summary-card strong{display:block;color:#e0f2fe;font-size:.96rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .month-summary-card small{display:block;color:#64748b;font-size:.62rem;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .month-filter-card{background:rgba(15,23,42,.58);border:1px solid rgba(148,163,184,.12);border-radius:18px;padding:12px;margin-bottom:12px}
     .month-filter-card label{margin-bottom:7px}
     .month-filter-card select{width:100%;margin:0}
@@ -332,6 +336,37 @@
     .month-day-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 8px;color:#cbd5e1}
     .month-day-header strong{color:#f8fafc;font-size:.98rem}
     .month-day-header span{color:#bae6fd;background:rgba(56,189,248,.13);border:1px solid rgba(56,189,248,.22);border-radius:999px;padding:5px 8px;font-size:.78rem;font-weight:800}
+    .month-filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .month-filter-grid label{margin-bottom:7px}
+    .calendar-legend{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px;color:#94a3b8;font-size:.78rem}
+    .calendar-legend span{display:inline-flex;align-items:center;gap:5px;background:rgba(2,6,23,.28);border:1px solid rgba(148,163,184,.12);border-radius:999px;padding:5px 8px}
+    .legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+    .legend-work{background:#38bdf8}.legend-vacation{background:#22c55e}.legend-sick{background:#fb923c}
+    .month-calendar-shell{background:rgba(15,23,42,.54);border:1px solid rgba(148,163,184,.14);border-radius:22px;padding:10px;box-shadow:0 12px 26px rgba(2,6,23,.20)}
+    .month-calendar-weekdays,.month-calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+    .month-calendar-weekdays{margin-bottom:6px;color:#7dd3fc;font-size:.68rem;font-weight:900;text-align:center;text-transform:uppercase;letter-spacing:.05em}
+    .month-day-placeholder{min-height:44px;border-radius:14px;background:rgba(2,6,23,.14);border:1px dashed rgba(148,163,184,.08)}
+    .month-day-cell{position:relative;min-height:44px;border:none;border-radius:14px;background:rgba(2,6,23,.34);border:1px solid rgba(148,163,184,.14);color:#e2e8f0;padding:5px 4px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:2px;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.01)}
+    .month-day-cell.has-entry{background:linear-gradient(160deg,rgba(14,165,233,.18),rgba(2,6,23,.42));border-color:rgba(56,189,248,.28)}
+    .month-day-cell.has-vacation{border-color:rgba(34,197,94,.38)}
+    .month-day-cell.has-sick{border-color:rgba(251,146,60,.42)}
+    .month-day-cell.today{box-shadow:0 0 0 2px rgba(125,211,252,.38)}
+    .month-day-cell.selected{background:linear-gradient(145deg,rgba(56,189,248,.36),rgba(15,23,42,.72));border-color:rgba(125,211,252,.72)}
+    .month-day-number{font-weight:950;font-size:.86rem;color:#f8fafc;line-height:1}
+    .month-day-hours{font-size:.64rem;color:#bae6fd;font-weight:850;font-variant-numeric:tabular-nums;line-height:1}
+    .month-day-project{display:none;font-size:.67rem;color:#94a3b8;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .month-day-dots{display:flex;gap:3px;margin-top:auto}
+    .month-day-dot{width:6px;height:6px;border-radius:50%;background:#38bdf8}.month-day-dot.vacation{background:#22c55e}.month-day-dot.sick{background:#fb923c}
+    .month-day-detail{margin-top:12px;background:rgba(30,41,59,.70);border:1px solid rgba(148,163,184,.14);border-radius:22px;padding:12px}
+    .month-detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}.month-detail-head strong{color:#f8fafc}.month-detail-head span{color:#bae6fd;font-size:.84rem;font-weight:850}
+    .month-detail-empty{color:#94a3b8;background:rgba(2,6,23,.28);border:1px dashed rgba(148,163,184,.16);border-radius:16px;padding:12px;font-size:.88rem}
+    .client-field{position:relative;margin-bottom:12px}
+    .stats-segmented{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:rgba(2,6,23,.35);border:1px solid rgba(148,163,184,.14);border-radius:20px;padding:6px;margin:12px 0}
+    .stats-segment-btn{border:none;border-radius:15px;background:transparent;color:#94a3b8;font-size:.78rem;font-weight:900;padding:9px 6px;cursor:pointer}
+    .stats-segment-btn.active{background:linear-gradient(135deg,rgba(56,189,248,.28),rgba(14,165,233,.12));color:#e0f2fe;box-shadow:inset 0 0 0 1px rgba(56,189,248,.18)}
+    .stats-panel[hidden]{display:none!important}.stats-panel{display:flex;flex-direction:column;gap:12px}
+    .settings-logo-row{display:flex;align-items:center;gap:12px;margin:8px 0 10px}.company-logo-preview{width:54px;height:54px;border-radius:16px;object-fit:cover;background:#020617;border:1px solid rgba(148,163,184,.20)}
+    .settings-file-input{font-size:.88rem;padding:10px;background:#020617;border:1px solid #334155;border-radius:14px;color:var(--text)}
     .more-action-hub{display:flex;flex-direction:column;gap:10px}
     .more-section{background:rgba(30,41,59,.74);border:1px solid rgba(148,163,184,.14);border-radius:22px;padding:12px;box-shadow:0 12px 28px rgba(2,6,23,.18)}
     .more-section-title{display:flex;align-items:flex-start;gap:11px;margin-bottom:10px}
@@ -362,7 +397,7 @@
     .vacation-option{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:12px;border-radius:16px;background:rgba(2,6,23,.30);border:1px solid rgba(148,163,184,.12)}
     .vacation-option span{font-size:.92rem;color:#e2e8f0;font-weight:700}
     .vacation-preview{color:#bbf7d0;background:rgba(34,197,94,.10);border:1px solid rgba(34,197,94,.18);border-radius:15px;padding:10px 11px;margin-top:8px;font-size:.84rem;line-height:1.35}
-    @media (max-width:360px){.mini-stats,.stats-kpi-grid,.stats-chart-row,.entry-meta,.today-insight-grid,.month-summary-grid,.more-section-actions,.pause-row,#vacationModal .date-grid{grid-template-columns:1fr}.hero-time{font-size:3.15rem}.hero-pills{grid-template-columns:1fr}}
+    @media (max-width:360px){.mini-stats,.stats-kpi-grid,.stats-chart-row,.entry-meta,.today-insight-grid,.month-filter-grid,.more-section-actions,.pause-row,#vacationModal .date-grid{grid-template-columns:1fr}.month-summary-grid{grid-template-columns:repeat(2,1fr)}.hero-time{font-size:3.15rem}.hero-pills{grid-template-columns:1fr}.month-calendar-weekdays,.month-calendar-grid{gap:4px}.month-day-cell,.month-day-placeholder{min-height:42px;padding:4px 3px}.stats-segmented{grid-template-columns:repeat(2,1fr)}}
 
   </style>
 
@@ -410,6 +445,14 @@
       <div class="project-card-title">
         <strong>Projekt vorbereiten</strong>
         <span>Projekt wählen, Pause prüfen und direkt starten.</span>
+      </div>
+    </div>
+
+    <div class="client-field">
+      <label for="client">Kunde</label>
+      <div class="input-shell client-input-shell">
+        <span class="field-icon" aria-hidden="true">👤</span>
+        <input id="client" maxlength="120" autocomplete="off" placeholder="z. B. Kunde Müller" />
       </div>
     </div>
 
@@ -477,10 +520,21 @@
 
     <div id="monthSummary" class="month-summary-grid" aria-label="Monatskennzahlen"></div>
     <div class="month-filter-card">
-      <label for="monthProjectFilter">Projekt filtern</label>
-      <select id="monthProjectFilter" class="month-select" aria-label="Projektfilter für Monatsübersicht"></select>
+      <div class="month-filter-grid">
+        <div>
+          <label for="monthClientFilter">Kunde filtern</label>
+          <select id="monthClientFilter" class="month-select" aria-label="Kundenfilter für Monatsübersicht"></select>
+        </div>
+        <div>
+          <label for="monthProjectFilter">Projekt filtern</label>
+          <select id="monthProjectFilter" class="month-select" aria-label="Projektfilter für Monatsübersicht"></select>
+        </div>
+      </div>
     </div>
-    <div id="monthContent" style="margin:10px 0"></div>
+    <div id="monthContent" class="month-content">
+      <div id="monthCalendar" class="month-calendar-shell"></div>
+      <div id="monthDayDetail" class="month-day-detail"></div>
+    </div>
   </div>
     </section>
 
@@ -508,41 +562,64 @@
     <div class="mini-stat"><span>Überstunden Monat</span><strong id="otMonth">+00:00</strong></div>
   </div>
 
+      <div id="statsSegmentedControl" class="stats-segmented" role="tablist" aria-label="Statistikbereiche">
+        <button class="stats-segment-btn active" type="button" data-stats-target="overview">Überblick</button>
+        <button class="stats-segment-btn" type="button" data-stats-target="projects">Projekte</button>
+        <button class="stats-segment-btn" type="button" data-stats-target="times">Zeiten</button>
+        <button class="stats-segment-btn" type="button" data-stats-target="absence">Abwesenheit</button>
+      </div>
+
       <div id="statsDashboard" class="stats-dashboard">
-        <section class="stats-kpi-grid" aria-label="Statistik Hauptkennzahlen">
-          <div class="stats-kpi-card"><span>Gesamtzeit</span><strong id="statsTotalWork">00:00</strong></div>
-          <div class="stats-kpi-card"><span>Gebuchte Tage</span><strong id="statsWorkDays">0</strong></div>
-          <div class="stats-kpi-card"><span>Ø pro Tag</span><strong id="statsAvgDay">00:00</strong></div>
-          <div class="stats-kpi-card"><span>Soll/Ist</span><strong id="statsTargetBalance">–</strong></div>
-          <div class="stats-kpi-card"><span>Urlaub</span><strong id="statsVacationDays">0 · 00:00</strong></div>
-          <div class="stats-kpi-card"><span>Krankenstand</span><strong id="statsSickDays">0 · 00:00</strong></div>
-          <div class="stats-kpi-card"><span>Stärkster Tag</span><strong id="statsBestDay">–</strong></div>
-          <div class="stats-kpi-card"><span>Top-Projekt</span><strong id="statsTopProject">–</strong></div>
+        <section id="statsOverviewPanel" class="stats-panel" data-stats-section="overview">
+          <section class="stats-kpi-grid" aria-label="Statistik Hauptkennzahlen">
+            <div class="stats-kpi-card"><span>Gesamtzeit</span><strong id="statsTotalWork">00:00</strong></div>
+            <div class="stats-kpi-card"><span>Soll/Ist</span><strong id="statsTargetBalance">–</strong></div>
+            <div class="stats-kpi-card"><span>Ø pro Tag</span><strong id="statsAvgDay">00:00</strong></div>
+            <div class="stats-kpi-card"><span>Gebuchte Tage</span><strong id="statsWorkDays">0</strong></div>
+            <div class="stats-kpi-card"><span>Stärkster Tag</span><strong id="statsBestDay">–</strong></div>
+            <div class="stats-kpi-card"><span>Top-Kunde</span><strong id="statsTopClient">–</strong></div>
+          </section>
+          <section class="stats-chart-card" aria-labelledby="statsInsightTitle">
+            <div class="stats-card-head"><strong id="statsInsightTitle">Insights</strong><small id="statsRangeLabel">Aktueller Monat</small></div>
+            <div id="statsInsightList" class="stats-insights"></div>
+          </section>
         </section>
 
-        <section class="stats-chart-card" aria-labelledby="statsDailyTitle">
-          <div class="stats-card-head"><strong id="statsDailyTitle">Verlauf</strong><small id="statsRangeLabel">Aktueller Monat</small></div>
-          <div id="statsDailyChart" class="stats-bar-chart" aria-label="Zeitverlauf Diagramm"></div>
+        <section id="statsProjectsPanel" class="stats-panel" data-stats-section="projects" hidden>
+          <section class="stats-kpi-grid" aria-label="Projektkennzahlen">
+            <div class="stats-kpi-card"><span>Top-Projekt</span><strong id="statsTopProject">–</strong></div>
+            <div class="stats-kpi-card"><span>Top-Kunde</span><strong id="statsTopClientMirror">–</strong></div>
+          </section>
+          <section class="stats-chart-card" aria-labelledby="statsProjectTitle">
+            <div class="stats-card-head"><strong id="statsProjectTitle">Projektverteilung</strong><small>Top 6 nach Arbeitszeit</small></div>
+            <div id="statsProjectChart" class="stats-bar-chart" aria-label="Projektverteilung Diagramm"></div>
+          </section>
+          <section class="stats-chart-card" aria-labelledby="statsClientTitle">
+            <div class="stats-card-head"><strong id="statsClientTitle">Kundenverteilung</strong><small>Top 6 nach Arbeitszeit</small></div>
+            <div id="statsClientChart" class="stats-bar-chart" aria-label="Kundenverteilung Diagramm"></div>
+          </section>
         </section>
 
-        <section class="stats-chart-card" aria-labelledby="statsProjectTitle">
-          <div class="stats-card-head"><strong id="statsProjectTitle">Projektverteilung</strong><small>Top 6 nach Arbeitszeit</small></div>
-          <div id="statsProjectChart" class="stats-bar-chart" aria-label="Projektverteilung Diagramm"></div>
+        <section id="statsTimesPanel" class="stats-panel" data-stats-section="times" hidden>
+          <section class="stats-chart-card" aria-labelledby="statsDailyTitle">
+            <div class="stats-card-head"><strong id="statsDailyTitle">Verlauf</strong><small>Tag/Monat nach Zeitraum</small></div>
+            <div id="statsDailyChart" class="stats-bar-chart" aria-label="Zeitverlauf Diagramm"></div>
+          </section>
+          <section class="stats-chart-card" aria-labelledby="statsWeekdayTitle">
+            <div class="stats-card-head"><strong id="statsWeekdayTitle">Wochentage</strong><small>Wo die meiste Zeit liegt</small></div>
+            <div id="statsWeekdayChart" class="stats-bar-chart" aria-label="Wochentage Diagramm"></div>
+          </section>
         </section>
 
-        <section class="stats-chart-card" aria-labelledby="statsWeekdayTitle">
-          <div class="stats-card-head"><strong id="statsWeekdayTitle">Wochentage</strong><small>Wo die meiste Zeit liegt</small></div>
-          <div id="statsWeekdayChart" class="stats-bar-chart" aria-label="Wochentage Diagramm"></div>
-        </section>
-
-        <section class="stats-chart-card" aria-labelledby="statsAbsenceTitle">
-          <div class="stats-card-head"><strong id="statsAbsenceTitle">Abwesenheiten</strong><small>Urlaub & Krankenstand</small></div>
-          <div id="statsAbsenceChart" class="stats-bar-chart" aria-label="Abwesenheiten Diagramm"></div>
-        </section>
-
-        <section class="stats-chart-card" aria-labelledby="statsInsightTitle">
-          <div class="stats-card-head"><strong id="statsInsightTitle">Insights</strong><small>Automatische Auswertung</small></div>
-          <div id="statsInsightList" class="stats-insights"></div>
+        <section id="statsAbsencePanel" class="stats-panel" data-stats-section="absence" hidden>
+          <section class="stats-kpi-grid" aria-label="Abwesenheitskennzahlen">
+            <div class="stats-kpi-card"><span>Urlaub</span><strong id="statsVacationDays">0 · 00:00</strong></div>
+            <div class="stats-kpi-card"><span>Krankenstand</span><strong id="statsSickDays">0 · 00:00</strong></div>
+          </section>
+          <section class="stats-chart-card" aria-labelledby="statsAbsenceTitle">
+            <div class="stats-card-head"><strong id="statsAbsenceTitle">Abwesenheiten</strong><small>Urlaub & Krankenstand</small></div>
+            <div id="statsAbsenceChart" class="stats-bar-chart" aria-label="Abwesenheiten Diagramm"></div>
+          </section>
         </section>
       </div>
 
@@ -617,7 +694,7 @@
       <div class="info-text">
         <div>Developed by Simon Kienzl</div>
         <div>E-mail: <a href="mailto:simi.k12@gmx.at">simi.k12@gmx.at</a></div>
-        <div>Version <span id="appVersion">3.0.0</span></div>
+        <div>Version <span id="appVersion">3.2.0</span></div>
       </div>
 
       <div class="modal-actions">
@@ -641,6 +718,27 @@
 
         <label for="workdays">Arbeitstage/Woche</label>
         <input id="workdays" type="number" min="1" max="7" inputmode="numeric" />
+      </div>
+
+      <div class="settings-section">
+        <strong>Firma & Bericht</strong>
+
+        <label for="companyName">Firmenname</label>
+        <input id="companyName" maxlength="120" autocomplete="organization" placeholder="z. B. Kienzl Installationen" />
+
+        <label for="companyAddress">Adresse / Fußzeile</label>
+        <input id="companyAddress" maxlength="180" autocomplete="street-address" placeholder="Adresse, UID oder kurzer Hinweis" />
+
+        <label for="companyContact">Kontakt</label>
+        <input id="companyContact" maxlength="160" autocomplete="email" placeholder="E-Mail / Telefon / Website" />
+
+        <label for="companyLogoInput">Logo für PDF-Berichte</label>
+        <div class="settings-logo-row">
+          <img id="companyLogoPreview" class="company-logo-preview" alt="Logo Vorschau" />
+          <input id="companyLogoInput" class="settings-file-input" type="file" accept="image/png,image/jpeg,image/webp" />
+        </div>
+        <button type="button" class="btn small-btn" onclick="clearCompanyLogo()">Logo entfernen</button>
+        <div class="help-text">Das Logo wird nur lokal im Browser gespeichert und im Monats-PDF verwendet.</div>
       </div>
 
       <div class="settings-section">
@@ -712,6 +810,9 @@
   <div id="editModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="editTitle" onclick="backdropCloseEdit(event)">
     <div class="card modal" onclick="event.stopPropagation()">
       <h3 id="editTitle">Eintrag ändern</h3>
+
+      <label for="editClient">Kunde</label>
+      <input id="editClient" maxlength="120" autocomplete="off" />
 
       <label for="editProject">Projekt</label>
       <input id="editProject" maxlength="120" autocomplete="off" />
@@ -819,7 +920,7 @@
 </div>
 
 <script>
-const APP_VERSION = '3.0.0';
+const APP_VERSION = '3.2.0';
 function LS(key, fallback = null){
   try{
     const raw = localStorage.getItem(key);
@@ -984,6 +1085,19 @@ function sanitizeProject(value){
   return String(value || '').replace(/[\u0000-\u001F\u007F]/g, '').trim().slice(0,120);
 }
 
+function sanitizeClient(value){
+  return String(value || '').replace(/[\u0000-\u001F\u007F]/g, '').trim().slice(0,120);
+}
+
+function sanitizePlainText(value, max = 180){
+  return String(value || '').replace(/[\u0000-\u001F\u007F]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max);
+}
+
+function sanitizeLogoData(value){
+  const s = String(value || '');
+  return /^data:image\/(png|jpeg|jpg|webp);base64,[A-Za-z0-9+/=]+$/.test(s) && s.length < 950000 ? s : '';
+}
+
 function getEntries(){
   const entries = LS('entries', []);
   return Array.isArray(entries) ? entries : [];
@@ -1017,6 +1131,7 @@ function normalizeEntry(raw){
       type: meta.type,
       date,
       project: meta.label,
+      client: '',
       startHM: '',
       endHM: '',
       minutes,
@@ -1036,6 +1151,7 @@ function normalizeEntry(raw){
     type: 'work',
     date,
     project: sanitizeProject(raw.project),
+    client: sanitizeClient(raw.client),
     startHM,
     endHM,
     minutes: calcWorkMinutesFromStartEnd(startHM, endHM, pauseRequested, extraMin),
@@ -1071,6 +1187,7 @@ function applyDailyPauseRules(rows){
           ...entry,
           type: meta.type,
           project: meta.label,
+          client: '',
           minutes: clampNumber(entry.minutes, 1, 24*60),
           pauseRequested: 0,
           pause: 0,
@@ -1109,6 +1226,7 @@ function normalizeSettings(raw = {}){
   const target = normTimeStr(raw.targetDay) || '08:00';
   return {
     project: sanitizeProject(raw.project),
+    client: sanitizeClient(raw.client),
     pause: clampNumber(raw.pause ?? 30, 0, 24*60),
     targetDay: target,
     workdays: clampNumber(raw.workdays ?? 5, 1, 7),
@@ -1116,7 +1234,11 @@ function normalizeSettings(raw = {}){
     pdfSignature: raw.pdfSignature !== false,
     pdfPauseSum: raw.pdfPauseSum !== false,
     pdfCompact: raw.pdfCompact === true,
-    autoBackupEnabled: raw.autoBackupEnabled !== false
+    autoBackupEnabled: raw.autoBackupEnabled !== false,
+    companyName: sanitizePlainText(raw.companyName, 120),
+    companyAddress: sanitizePlainText(raw.companyAddress, 180),
+    companyContact: sanitizePlainText(raw.companyContact, 160),
+    companyLogoData: sanitizeLogoData(raw.companyLogoData)
   };
 }
 
@@ -1131,6 +1253,7 @@ function normalizeBackupData(json){
 function applySettings(settings){
   const s = normalizeSettings(settings);
   project.value = s.project;
+  client.value = s.client;
   pause.value = s.pause;
   targetDay.value = s.targetDay;
   workdays.value = s.workdays;
@@ -1139,8 +1262,14 @@ function applySettings(settings){
   togglePdfPauseSum.checked = s.pdfPauseSum;
   togglePdfCompact.checked = s.pdfCompact;
   toggleAutoBackup.checked = s.autoBackupEnabled;
+  if(typeof companyName !== 'undefined' && companyName) companyName.value = s.companyName;
+  if(typeof companyAddress !== 'undefined' && companyAddress) companyAddress.value = s.companyAddress;
+  if(typeof companyContact !== 'undefined' && companyContact) companyContact.value = s.companyContact;
+  SS('companyLogoData', s.companyLogoData);
+  updateCompanyLogoPreview(s.companyLogoData);
 
   SS('project', s.project);
+  SS('client', s.client);
   SS('pause', s.pause);
   SS('targetDay', s.targetDay);
   SS('workdays', s.workdays);
@@ -1149,6 +1278,56 @@ function applySettings(settings){
   SS('pdfPauseSum', s.pdfPauseSum);
   SS('pdfCompact', s.pdfCompact);
   SS('autoBackupEnabled', s.autoBackupEnabled);
+  SS('companyName', s.companyName);
+  SS('companyAddress', s.companyAddress);
+  SS('companyContact', s.companyContact);
+}
+
+function getCompanyProfile(){
+  const nameFromInput = (typeof companyName !== 'undefined' && companyName && companyName.value) ? companyName.value : LS('companyName','');
+  const addressFromInput = (typeof companyAddress !== 'undefined' && companyAddress && companyAddress.value) ? companyAddress.value : LS('companyAddress','');
+  const contactFromInput = (typeof companyContact !== 'undefined' && companyContact && companyContact.value) ? companyContact.value : LS('companyContact','');
+  return {
+    companyName: sanitizePlainText(nameFromInput, 120),
+    companyAddress: sanitizePlainText(addressFromInput, 180),
+    companyContact: sanitizePlainText(contactFromInput, 160),
+    companyLogoData: sanitizeLogoData(LS('companyLogoData',''))
+  };
+}
+
+function updateCompanyLogoPreview(data = LS('companyLogoData','')){
+  const preview = document.getElementById('companyLogoPreview');
+  if(!preview) return;
+  const safe = sanitizeLogoData(data);
+  preview.src = safe || '';
+  preview.style.display = safe ? 'block' : 'none';
+}
+
+function clearCompanyLogo(){
+  removeLS('companyLogoData');
+  if(typeof companyLogoInput !== 'undefined' && companyLogoInput) companyLogoInput.value = '';
+  updateCompanyLogoPreview('');
+  showToast('Logo entfernt');
+}
+
+function handleCompanyLogoUpload(){
+  const input = document.getElementById('companyLogoInput');
+  const file = input && input.files ? input.files[0] : null;
+  if(!file) return;
+  if(!/^image\/(png|jpeg|webp)$/.test(file.type) || file.size > 850000){
+    showToast('⚠️ Logo bitte als PNG/JPG/WebP unter 850 KB wählen');
+    input.value = '';
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    const data = sanitizeLogoData(reader.result);
+    if(!data){ showToast('⚠️ Logo konnte nicht gelesen werden'); return; }
+    SS('companyLogoData', data);
+    updateCompanyLogoPreview(data);
+    showToast('Logo gespeichert');
+  };
+  reader.readAsDataURL(file);
 }
 
 function appendTextLine(parent, label, value, strong = false){
@@ -1482,6 +1661,7 @@ document.addEventListener('click', (e)=>{
 
 
 project.value = sanitizeProject(LS('project',''));
+client.value = sanitizeClient(LS('client',''));
 pause.value = clampNumber(LS('pause',30), 0, 24*60);
 
 // Sollzeit/Überstunden Einstellungen
@@ -1509,6 +1689,8 @@ function updateRunningPause(value, quiet = false){
   return safePause;
 }
 
+client.onchange=e=>{ e.target.value = sanitizeClient(e.target.value); SS('client', e.target.value); updateDashboard(); };
+client.oninput=()=>updateDashboard();
 project.onchange=e=>{ e.target.value = sanitizeProject(e.target.value); SS('project', e.target.value); renderProjectChips(); updateDashboard(); };
 project.oninput=()=>updateDashboard();
 pause.oninput=e=>{ updateRunningPause(e.target.value, true); };
@@ -1531,7 +1713,7 @@ function showToast(msg){
 }
 function setRunning(isRunning){
   runningBadge.style.display = isRunning ? 'inline-flex' : 'none';
-  [project].forEach(el=>{ if(el) el.disabled = !!isRunning; });
+  [project, client].forEach(el=>{ if(el) el.disabled = !!isRunning; });
   if(pause) pause.disabled = false;
   renderProjectChips(!!isRunning);
   updateDashboard();
@@ -1557,6 +1739,7 @@ function startWork(){
   const run = {
     start,
     project: sanitizeProject(project.value),
+    client: sanitizeClient(client.value),
     pause: clampNumber(pause.value, 0, 24*60),
     extraMin: 0
   };
@@ -1588,10 +1771,12 @@ function stopWork(){
   const pauseMin = clampNumber(run.pause ?? pause.value, 0, 24*60);
   const extraMin = clampNumber(run.extraMin ?? 0, 0, 24*60);
   const entryProject = sanitizeProject(run.project ?? project.value);
+  const entryClient = sanitizeClient(run.client ?? client.value);
 
   const entry = normalizeEntry({
     date: localDateISO(new Date(startMs)),
     project: entryProject,
+    client: entryClient,
     startHM,
     endHM,
     startMs,
@@ -1681,6 +1866,10 @@ function openSettings(){
   togglePdfPauseSum.checked = LS('pdfPauseSum') !== false;
   togglePdfCompact.checked = LS('pdfCompact') === true;
   toggleAutoBackup.checked = LS('autoBackupEnabled') !== false;
+  if(typeof companyName !== 'undefined' && companyName) companyName.value = sanitizePlainText(LS('companyName',''), 120);
+  if(typeof companyAddress !== 'undefined' && companyAddress) companyAddress.value = sanitizePlainText(LS('companyAddress',''), 180);
+  if(typeof companyContact !== 'undefined' && companyContact) companyContact.value = sanitizePlainText(LS('companyContact',''), 160);
+  updateCompanyLogoPreview();
 
   try{ updateBackupStatusUI(); }catch(_){ }
   settingsModal.style.display = 'flex';
@@ -1694,6 +1883,7 @@ function backdropCloseSettings(e){
 function saveSettings(){
   const settings = normalizeSettings({
     project: project.value,
+    client: client.value,
     pause: pause.value,
     targetDay: targetDay.value,
     workdays: workdays.value,
@@ -1701,7 +1891,11 @@ function saveSettings(){
     pdfSignature: togglePdfSignature.checked,
     pdfPauseSum: togglePdfPauseSum.checked,
     pdfCompact: togglePdfCompact.checked,
-    autoBackupEnabled: toggleAutoBackup.checked
+    autoBackupEnabled: toggleAutoBackup.checked,
+    companyName: companyName ? companyName.value : '',
+    companyAddress: companyAddress ? companyAddress.value : '',
+    companyContact: companyContact ? companyContact.value : '',
+    companyLogoData: LS('companyLogoData','')
   });
   applySettings(settings);
   applyOvertimeVisibility();
@@ -1750,6 +1944,7 @@ function saveEdit(){
     ...prev,
     date: newDate,
     project: sanitizeProject(editProject.value),
+    client: sanitizeClient(editClient.value),
     startHM,
     endHM,
     pause: pauseMin,
@@ -1811,6 +2006,7 @@ function buildAbsenceEntry(dateISO, type = selectedAbsenceType(), minutes = getT
     type: meta.type,
     date: dateISO,
     project: meta.label,
+    client: '',
     minutes: clampNumber(minutes, 1, 24*60)
   });
 }
@@ -2009,6 +2205,7 @@ function openEditAtIndex(idx){
     showToast(`${meta.icon} ${meta.label}-Einträge können gelöscht und neu angelegt werden`);
     return;
   }
+  editClient.value = e.client || '';
   editProject.value = e.project || '';
   editDate.value = e.date || '';
   syncEditDatePretty();
@@ -2071,6 +2268,11 @@ function selectedYM(){
   return `${y}-${m}`;
 }
 
+function getSelectedMonthClientFilter(){
+  const filter = document.getElementById('monthClientFilter');
+  return filter ? String(filter.value || '') : '';
+}
+
 function getSelectedMonthProjectFilter(){
   const filter = document.getElementById('monthProjectFilter');
   return filter ? String(filter.value || '') : '';
@@ -2082,34 +2284,59 @@ function updateMoreExportContext(){
   const ym = selectedYM();
   const y = ym.slice(0,4);
   const m = ym.slice(5,7);
+  const selectedClient = getSelectedMonthClientFilter();
   const selectedProject = getSelectedMonthProjectFilter();
-  ctx.textContent = selectedProject
-    ? `Export-Kontext: ${monthName(Number(m)-1)} ${y} · ${selectedProject}`
-    : `Export-Kontext: ${monthName(Number(m)-1)} ${y} · alle Projekte`;
+  const parts = [monthName(Number(m)-1), y];
+  parts.push(selectedClient ? `Kunde: ${selectedClient}` : 'alle Kunden');
+  parts.push(selectedProject ? `Projekt: ${selectedProject}` : 'alle Projekte');
+  ctx.textContent = `Export-Kontext: ${parts.join(' · ')}`;
 }
 
 function populateMonthProjectFilter(allRows){
-  const filter = document.getElementById('monthProjectFilter');
-  if(!filter) return;
-  const current = filter.value;
-  const projects = Array.from(new Set((Array.isArray(allRows) ? allRows : [])
+  const projectFilter = document.getElementById('monthProjectFilter');
+  const clientFilter = document.getElementById('monthClientFilter');
+  const safeRows = Array.isArray(allRows) ? allRows : [];
+  const currentProject = projectFilter ? projectFilter.value : '';
+  const currentClient = clientFilter ? clientFilter.value : '';
+  const clients = Array.from(new Set(safeRows.map(row=>sanitizeClient(row.e && row.e.client)).filter(Boolean))).sort((a,b)=>a.localeCompare(b, 'de'));
+  const projects = Array.from(new Set(safeRows
+    .filter(row=> row.e && !isAbsenceEntry(row.e))
+    .filter(row=> currentClient ? sanitizeClient(row.e && row.e.client) === currentClient : true)
     .map(row=>sanitizeProject(row.e && row.e.project))
     .filter(Boolean)))
     .sort((a,b)=>a.localeCompare(b, 'de'));
 
-  filter.replaceChildren();
-  const allOpt = document.createElement('option');
-  allOpt.value = '';
-  allOpt.textContent = 'Alle Projekte';
-  filter.appendChild(allOpt);
-  projects.forEach((name)=>{
-    const opt = document.createElement('option');
-    opt.value = name;
-    opt.textContent = name;
-    filter.appendChild(opt);
-  });
-  filter.value = projects.includes(current) ? current : '';
-  filter.onchange = () => renderSelectedMonth();
+  if(clientFilter){
+    clientFilter.replaceChildren();
+    const allClientOpt = document.createElement('option');
+    allClientOpt.value = '';
+    allClientOpt.textContent = 'Alle Kunden';
+    clientFilter.appendChild(allClientOpt);
+    clients.forEach((name)=>{
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      clientFilter.appendChild(opt);
+    });
+    clientFilter.value = clients.includes(currentClient) ? currentClient : '';
+    clientFilter.onchange = () => renderSelectedMonth();
+  }
+
+  if(projectFilter){
+    projectFilter.replaceChildren();
+    const allOpt = document.createElement('option');
+    allOpt.value = '';
+    allOpt.textContent = 'Alle Projekte';
+    projectFilter.appendChild(allOpt);
+    projects.forEach((name)=>{
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      projectFilter.appendChild(opt);
+    });
+    projectFilter.value = projects.includes(currentProject) ? currentProject : '';
+    projectFilter.onchange = () => renderSelectedMonth();
+  }
 }
 
 function appendMonthSummaryCard(parent, label, value, hint = ''){
@@ -2139,13 +2366,17 @@ function buildMonthSummary(rows, allRows = rows){
   const totalWork = safeRows.reduce((sum,row)=>sum+Number(row.e.minutes||0),0);
   const totalPause = safeRows.reduce((sum,row)=>sum+Number(row.e.pause||0),0);
   const dayCount = new Set(safeRows.map(row=>row.e.date)).size;
-  const projectCount = new Set(sourceRows.map(row=>sanitizeProject(row.e.project)).filter(Boolean)).size;
-  const filterActive = !!getSelectedMonthProjectFilter();
+  const selectedClient = getSelectedMonthClientFilter();
+  const selectedProject = getSelectedMonthProjectFilter();
+  const countRows = selectedClient ? sourceRows.filter(row=>sanitizeClient(row.e.client) === selectedClient) : sourceRows;
+  const projectCount = new Set(countRows.filter(row=>!isAbsenceEntry(row.e)).map(row=>sanitizeProject(row.e.project)).filter(Boolean)).size;
+  const clientCount = new Set(sourceRows.map(row=>sanitizeClient(row.e.client)).filter(Boolean)).size;
+  const filterActive = !!(selectedProject || selectedClient);
 
   appendMonthSummaryCard(summary, 'Arbeitszeit', fmt(totalWork), filterActive ? 'gefilterte Auswahl' : 'Monat gesamt');
-  appendMonthSummaryCard(summary, 'Arbeitstage', String(dayCount), `${safeRows.length} Einträge`);
-  appendMonthSummaryCard(summary, 'Pause', fmt(totalPause), 'effektiv berechnet');
-  appendMonthSummaryCard(summary, 'Projekte', String(filterActive ? 1 : projectCount), filterActive ? 'Filter aktiv' : 'im Monat');
+  appendMonthSummaryCard(summary, 'Tage', String(dayCount), `${safeRows.length} Einträge`);
+  appendMonthSummaryCard(summary, 'Kunden', String(selectedClient ? 1 : clientCount), selectedClient ? 'Filter aktiv' : 'im Monat');
+  appendMonthSummaryCard(summary, 'Projekte', String(selectedProject ? 1 : projectCount), selectedProject ? 'Filter aktiv' : 'im Monat');
 }
 
 function createMonthEntryCard(e, idx){
@@ -2174,7 +2405,7 @@ function createMonthEntryCard(e, idx){
   dateEl.textContent = fmtDate(e.date);
   const projectEl = document.createElement('div');
   projectEl.className = 'entry-project';
-  projectEl.textContent = absence ? `${absenceMeta.icon} ${absenceMeta.label}` : (e.project || 'Ohne Projekt');
+  projectEl.textContent = absence ? `${absenceMeta.icon} ${absenceMeta.label}` : `${e.client ? `${e.client} · ` : ''}${e.project || 'Ohne Projekt'}`;
   titleWrap.appendChild(dateEl);
   titleWrap.appendChild(projectEl);
   const badge = document.createElement('div');
@@ -2219,14 +2450,159 @@ function createMonthEntryCard(e, idx){
   return item;
 }
 
-function renderSelectedMonth(){
-  monthContent.replaceChildren();
+let selectedMonthDay = '';
 
+function groupRowsByDate(rows){
+  const groups = new Map();
+  (Array.isArray(rows) ? rows : []).forEach((row)=>{
+    const key = row.e.date || '';
+    if(!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(row);
+  });
+  return groups;
+}
+
+function summarizeCalendarDay(dayRows){
+  const rows = Array.isArray(dayRows) ? dayRows : [];
+  const minutes = rows.reduce((sum,row)=>sum+Number(row.e.minutes||0),0);
+  const hasWork = rows.some(row=>!isAbsenceEntry(row.e));
+  const hasVacation = rows.some(row=>isVacationEntry(row.e));
+  const hasSick = rows.some(row=>isSickEntry(row.e));
+  const project = rows.find(row=>!isAbsenceEntry(row.e) && row.e.project)?.e.project || rows[0]?.e.project || '';
+  return {minutes, hasWork, hasVacation, hasSick, project, count: rows.length};
+}
+
+function buildMonthCalendar(ym, rows){
+  const container = document.getElementById('monthCalendar');
+  if(!container) return;
+  container.replaceChildren();
+
+  const legend = document.createElement('div');
+  legend.className = 'calendar-legend';
+  [['legend-work','Arbeit'], ['legend-vacation','Urlaub'], ['legend-sick','Krankenstand']].forEach(([cls,label])=>{
+    const item = document.createElement('span');
+    const dot = document.createElement('i');
+    dot.className = `legend-dot ${cls}`;
+    item.appendChild(dot);
+    item.appendChild(document.createTextNode(label));
+    legend.appendChild(item);
+  });
+  container.appendChild(legend);
+
+  const weekdays = document.createElement('div');
+  weekdays.className = 'month-calendar-weekdays';
+  ['Mo','Di','Mi','Do','Fr','Sa','So'].forEach((day)=>{
+    const el = document.createElement('div');
+    el.textContent = day;
+    weekdays.appendChild(el);
+  });
+  container.appendChild(weekdays);
+
+  const grid = document.createElement('div');
+  grid.className = 'month-calendar-grid';
+  const [year, month] = ym.split('-').map(Number);
+  const first = new Date(year, month - 1, 1);
+  first.setHours(12,0,0,0);
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const leading = (first.getDay() || 7) - 1;
+  const groups = groupRowsByDate(rows);
+  const todayISO = localDateISO();
+
+  for(let i=0; i<leading; i++){
+    const blank = document.createElement('div');
+    blank.className = 'month-day-placeholder';
+    grid.appendChild(blank);
+  }
+
+  for(let day=1; day<=daysInMonth; day++){
+    const dateISO = `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const dayRows = groups.get(dateISO) || [];
+    const summary = summarizeCalendarDay(dayRows);
+    const cell = document.createElement('button');
+    cell.type = 'button';
+    cell.className = 'month-day-cell';
+    if(summary.count) cell.classList.add('has-entry');
+    if(summary.hasVacation) cell.classList.add('has-vacation');
+    if(summary.hasSick) cell.classList.add('has-sick');
+    if(dateISO === todayISO) cell.classList.add('today');
+    if(dateISO === selectedMonthDay) cell.classList.add('selected');
+    cell.setAttribute('aria-label', `${fmtDate(dateISO)}${summary.count ? `, ${fmt(summary.minutes)}, ${summary.count} Einträge` : ', keine Einträge'}`);
+    cell.onclick = ()=>selectMonthDay(dateISO);
+
+    const number = document.createElement('div');
+    number.className = 'month-day-number';
+    number.textContent = String(day);
+    cell.appendChild(number);
+
+    if(summary.count){
+      const hours = document.createElement('div');
+      hours.className = 'month-day-hours';
+      hours.textContent = fmt(summary.minutes);
+      cell.appendChild(hours);
+      if(summary.project){
+        const project = document.createElement('div');
+        project.className = 'month-day-project';
+        project.textContent = summary.project;
+        cell.appendChild(project);
+      }
+      const dots = document.createElement('div');
+      dots.className = 'month-day-dots';
+      if(summary.hasWork){ const dot = document.createElement('span'); dot.className = 'month-day-dot'; dots.appendChild(dot); }
+      if(summary.hasVacation){ const dot = document.createElement('span'); dot.className = 'month-day-dot vacation'; dots.appendChild(dot); }
+      if(summary.hasSick){ const dot = document.createElement('span'); dot.className = 'month-day-dot sick'; dots.appendChild(dot); }
+      cell.appendChild(dots);
+    }
+    grid.appendChild(cell);
+  }
+  container.appendChild(grid);
+}
+
+function renderMonthDayDetail(dateISO, rows){
+  const detail = document.getElementById('monthDayDetail');
+  if(!detail) return;
+  detail.replaceChildren();
+  if(!dateISO){
+    const empty = document.createElement('div');
+    empty.className = 'month-detail-empty';
+    empty.textContent = 'Tippe im Kalender auf einen Tag, um Details zu sehen.';
+    detail.appendChild(empty);
+    return;
+  }
+
+  const dayRows = (Array.isArray(rows) ? rows : []).filter(row=>row.e.date === dateISO);
+  const total = dayRows.reduce((sum,row)=>sum+Number(row.e.minutes||0),0);
+  const pauseTotal = dayRows.reduce((sum,row)=>sum+Number(row.e.pause||0),0);
+  const head = document.createElement('div');
+  head.className = 'month-detail-head';
+  const title = document.createElement('strong');
+  title.textContent = fmtDate(dateISO);
+  const meta = document.createElement('span');
+  meta.textContent = dayRows.length ? `${fmt(total)} · Pause ${fmt(pauseTotal)}` : 'Keine Einträge';
+  head.appendChild(title);
+  head.appendChild(meta);
+  detail.appendChild(head);
+
+  if(!dayRows.length){
+    const empty = document.createElement('div');
+    empty.className = 'month-detail-empty';
+    empty.textContent = 'Für diesen Tag sind noch keine Einträge vorhanden.';
+    detail.appendChild(empty);
+    return;
+  }
+  dayRows.forEach(({e,idx})=> detail.appendChild(createMonthEntryCard(e, idx)));
+}
+
+function selectMonthDay(dateISO){
+  selectedMonthDay = isValidDateISO(dateISO) ? dateISO : '';
+  renderSelectedMonth();
+}
+
+function renderSelectedMonth(){
   const ym = selectedYM();
   const y = ym.slice(0,4);
   const m = ym.slice(5,7);
 
-  monthTitle.textContent = `Monatsübersicht – ${monthName(Number(m)-1)} ${y}`;
+  monthTitle.textContent = `Monatskalender – ${monthName(Number(m)-1)} ${y}`;
 
   const allRows = getNormalizedEntries()
     .filter(row => String(row.entry.date||'').startsWith(ym))
@@ -2234,54 +2610,20 @@ function renderSelectedMonth(){
     .sort((a,b)=> String(a.e.date||'').localeCompare(String(b.e.date||'')) || String(a.e.startHM||'').localeCompare(String(b.e.startHM||'')));
 
   populateMonthProjectFilter(allRows);
+  const selectedClient = getSelectedMonthClientFilter();
   const selectedProject = getSelectedMonthProjectFilter();
-  const rows = selectedProject ? allRows.filter(row=>sanitizeProject(row.e.project) === selectedProject) : allRows;
+  const rows = allRows
+    .filter(row=> selectedClient ? sanitizeClient(row.e.client) === selectedClient : true)
+    .filter(row=> selectedProject ? sanitizeProject(row.e.project) === selectedProject : true);
+
   buildMonthSummary(rows, allRows);
   updateMoreExportContext();
 
-  if(!allRows.length){
-    const empty=document.createElement('div');
-    empty.style.color='#94a3b8';
-    empty.style.padding='10px 0';
-    empty.textContent='Keine Einträge in diesem Monat.';
-    monthContent.appendChild(empty);
-    return;
-  }
+  if(selectedMonthDay && !selectedMonthDay.startsWith(ym)) selectedMonthDay = '';
+  if(!selectedMonthDay && rows.length) selectedMonthDay = rows[0].e.date;
 
-  if(!rows.length){
-    const empty=document.createElement('div');
-    empty.style.color='#94a3b8';
-    empty.style.padding='10px 0';
-    empty.textContent='Keine Einträge für diesen Projektfilter.';
-    monthContent.appendChild(empty);
-    return;
-  }
-
-  const groups = new Map();
-  rows.forEach((row)=>{
-    const key = row.e.date || '';
-    if(!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(row);
-  });
-
-  groups.forEach((dayRows, date)=>{
-    const group = document.createElement('section');
-    group.className = 'month-day-group';
-
-    const header = document.createElement('div');
-    header.className = 'month-day-header';
-    const title = document.createElement('strong');
-    title.textContent = fmtDate(date);
-    const total = document.createElement('span');
-    const dayMinutes = dayRows.reduce((sum,row)=>sum+Number(row.e.minutes||0),0);
-    total.textContent = `${fmt(dayMinutes)} · ${dayRows.length} ${dayRows.length === 1 ? 'Eintrag' : 'Einträge'}`;
-    header.appendChild(title);
-    header.appendChild(total);
-    group.appendChild(header);
-
-    dayRows.forEach(({e,idx})=> group.appendChild(createMonthEntryCard(e, idx)));
-    monthContent.appendChild(group);
-  });
+  buildMonthCalendar(ym, rows);
+  renderMonthDayDetail(selectedMonthDay, rows);
 }
 
 function prevMonth(){
@@ -2308,10 +2650,12 @@ function nextMonth(){
 
 function getSelectedMonthEntries(){
   const ym = selectedYM();
+  const selectedClient = getSelectedMonthClientFilter();
   const selectedProject = getSelectedMonthProjectFilter();
   return getNormalizedEntries()
     .map(row=>row.entry)
     .filter(e => String(e.date||'').startsWith(ym))
+    .filter(e => selectedClient ? sanitizeClient(e.client) === selectedClient : true)
     .filter(e => selectedProject ? sanitizeProject(e.project) === selectedProject : true)
     .sort((a,b)=> String(a.date||'').localeCompare(String(b.date||'')) || String(a.startHM||'').localeCompare(String(b.startHM||'')));
 }
@@ -2346,6 +2690,7 @@ function exportMonthPdf(){
     .map(e => ({
       date: e.date,
       dateDisp: fmtDate(e.date),
+      client: e.client || '-',
       project: e.project || '-',
       startHM: e.startHM || '',
       endHM: e.endHM || '',
@@ -2356,7 +2701,6 @@ function exportMonthPdf(){
       pauseMin: Number(e.pause||0),
       extraMin: Number(e.extraMin||0),
     }));
-  // PDF: always sort ascending by date (01..31)
   monthEntries.sort((a,b)=> String(a.date||'').localeCompare(String(b.date||'')));
 
   if(!monthEntries.length){
@@ -2365,45 +2709,60 @@ function exportMonthPdf(){
   }
 
   const projects = Array.from(new Set(monthEntries.map(e=>e.project).filter(Boolean)));
+  const clients = Array.from(new Set(monthEntries.map(e=>e.client).filter(Boolean).filter(v=>v !== '-')));
   const projectLabel = projects.length === 1 ? projects[0] : (projects.length ? 'Mehrere' : '-');
+  const clientLabel = clients.length === 1 ? clients[0] : (clients.length ? 'Mehrere' : '-');
 
   const totalWorkMin = monthEntries.reduce((s,e)=>s+e.workMin,0);
   const totalPauseMin = monthEntries.reduce((s,e)=>s+e.pauseMin,0);
   const totalExtraMin = monthEntries.reduce((s,e)=>s+e.extraMin,0);
+  const company = getCompanyProfile();
 
-  // PDF export toggles
   const showSignature = LS('pdfSignature') !== false;
   const showPauseSum = LS('pdfPauseSum') !== false;
   const pdfCompact = LS('pdfCompact') === true;
 
   const doc = new jsPDF({ orientation:'p', unit:'mm', format:'a4' });
+  let titleX = 14;
+  if(company.companyLogoData){
+    try{
+      const format = company.companyLogoData.includes('image/jpeg') || company.companyLogoData.includes('image/jpg') ? 'JPEG' : 'PNG';
+      doc.addImage(company.companyLogoData, format, 14, 11, 18, 18);
+      titleX = 36;
+    }catch(error){ console.warn('Logo could not be added to PDF', error); }
+  }
 
   doc.setFont('helvetica','bold');
   doc.setFontSize(18);
-  doc.text('Arbeitszeitnachweis', 14, 18);
+  doc.text(company.companyName || 'Arbeitszeitnachweis', titleX, 18);
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(10);
+  if(company.companyAddress) doc.text(company.companyAddress, titleX, 24);
+  if(company.companyContact) doc.text(company.companyContact, titleX, 29);
 
   doc.setFont('helvetica','normal');
   doc.setFontSize(11);
-  doc.text(`Monat: ${monthName(Number(m)-1)} ${y}`, 14, 26);
-  doc.text(`Projekt: ${projectLabel}`, 14, 32);
+  doc.text(`Monat: ${monthName(Number(m)-1)} ${y}`, 14, 39);
+  doc.text(`Kunde: ${clientLabel}`, 14, 45);
+  doc.text(`Projekt: ${projectLabel}`, 14, 51);
 
   doc.setDrawColor(180);
-  doc.line(14, 36, 196, 36);
+  doc.line(14, 56, 196, 56);
 
-  const head = [['Datum', 'Projekt', 'Start', 'Stop', 'Arbeitszeit', 'Pause', 'Zusatz']];
-  const body = monthEntries.map(e => [e.dateDisp, e.project, (e.startHM||'--:--'), (e.endHM||'--:--'), e.work, e.pause, e.extra]);
+  const head = [['Datum', 'Kunde', 'Projekt', 'Start', 'Stop', 'Arbeitszeit', 'Pause', 'Zusatz']];
+  const body = monthEntries.map(e => [e.dateDisp, e.client, e.project, (e.startHM||'--:--'), (e.endHM||'--:--'), e.work, e.pause, e.extra]);
 
   doc.autoTable({
-    startY: 40,
+    startY: 60,
     head,
     body,
     theme: 'grid',
-    styles: { font: 'helvetica', fontSize: pdfCompact ? 9 : 10, cellPadding: pdfCompact ? 1.6 : 2.2 },
+    styles: { font: 'helvetica', fontSize: pdfCompact ? 7.8 : 8.7, cellPadding: pdfCompact ? 1.3 : 1.9 },
     headStyles: { fillColor: [30, 41, 59], textColor: [229, 231, 235] },
     margin: { left: 14, right: 14 },
   });
 
-  const endY = doc.lastAutoTable.finalY || 40;
+  const endY = doc.lastAutoTable.finalY || 60;
 
   doc.setFont('helvetica','bold');
   doc.setFontSize(11);
@@ -2430,13 +2789,14 @@ function exportMonthPdf(){
   const created = new Date().toLocaleString('de-AT');
   doc.text(`Erstellt am ${created}`, 14, 290);
 
-  const file = `Arbeitszeit_${y}-${m}_${projectLabel.replace(/[^a-zA-Z0-9_-]/g,'_')}.pdf`;
+  const clientPart = clientLabel.replace(/[^a-zA-Z0-9_-]/g,'_');
+  const projectPart = projectLabel.replace(/[^a-zA-Z0-9_-]/g,'_');
+  const file = `Arbeitszeit_${y}-${m}_${clientPart}_${projectPart}.pdf`;
   doc.save(file);
 
   showToast('📄 PDF erstellt');
-  setStatus('📄 PDF Export fertig');
+  setStatus('📄 Professioneller Monatsbericht fertig');
 }
-
 
 function exportMonthCsv(){
   const ym = selectedYM();
@@ -2448,12 +2808,13 @@ function exportMonthCsv(){
     return;
   }
 
-  const header = ['Datum','Projekt','Start','Stop','Arbeitszeit','Pause','Zusatz','Arbeitszeit Dezimal'];
+  const header = ['Datum','Kunde','Projekt','Start','Stop','Arbeitszeit','Pause','Zusatz','Arbeitszeit Dezimal'];
   const lines = [header.map(csvCell).join(';')];
   entries.forEach((e)=>{
     const decimal = (Number(e.minutes||0)/60).toFixed(2).replace('.', ',');
     lines.push([
       fmtDate(e.date),
+      e.client || '-',
       e.project || '-',
       e.startHM || '',
       e.endHM || '',
@@ -2631,6 +2992,9 @@ function renderStatsInsights(data){
   const insights = [];
   const balanceText = data.targetMin > 0 ? fmtSigned(data.balanceMin) : 'keine Sollzeit berechnet';
   insights.push({icon:'🎯', text:`Soll/Ist im Zeitraum: ${balanceText}.`});
+  if(data.topClient){
+    insights.push({icon:'👤', text:`Wichtigster Kunde im Zeitraum ist ${data.topClient.label} mit ${fmt(data.topClient.value)}.`});
+  }
   if(data.topProject){
     insights.push({icon:'🏗️', text:`Meiste Arbeitszeit liegt auf ${data.topProject.label} mit ${fmt(data.topProject.value)}.`});
   }
@@ -2657,6 +3021,19 @@ function renderStatsInsights(data){
   });
 }
 
+function setStatsSection(section){
+  const safe = ['overview','projects','times','absence'].includes(section) ? section : 'overview';
+  document.querySelectorAll('[data-stats-section]').forEach((panel)=>{
+    panel.hidden = panel.dataset.statsSection !== safe;
+  });
+  document.querySelectorAll('#statsSegmentedControl .stats-segment-btn').forEach((btn)=>{
+    const active = btn.dataset.statsTarget === safe;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  SS('activeStatsSection', safe);
+}
+
 function updateStatsDashboard(){
   const dashboard = document.getElementById('statsDashboard');
   if(!dashboard) return;
@@ -2678,7 +3055,9 @@ function updateStatsDashboard(){
   const dayRows = topStatsRowsFromMap(groupMinutesBy(entries, e=>entryDateValue(e)), 999);
   const bestDay = dayRows.length ? dayRows.sort((a,b)=>b.value-a.value)[0] : null;
   const projectRows = topStatsRowsFromMap(groupMinutesBy(workEntries, e=>sanitizeProject(e.project) || 'Ohne Projekt'), 6);
+  const clientRows = topStatsRowsFromMap(groupMinutesBy(workEntries, e=>sanitizeClient(e.client) || 'Ohne Kunde'), 6);
   const topProject = projectRows[0] || null;
+  const topClient = clientRows[0] || null;
   const vacationMin = sumEntryMinutes(vacationEntries);
   const sickMin = sumEntryMinutes(sickEntries);
 
@@ -2691,9 +3070,12 @@ function updateStatsDashboard(){
   setText('statsSickDays', `${sickEntries.length} · ${fmt(sickMin)}`);
   setText('statsBestDay', bestDay ? `${fmtDate(bestDay.label)} · ${fmt(bestDay.value)}` : '–');
   setText('statsTopProject', topProject ? `${topProject.label} · ${fmt(topProject.value)}` : '–');
+  setText('statsTopClient', topClient ? `${topClient.label} · ${fmt(topClient.value)}` : '–');
+  setText('statsTopClientMirror', topClient ? `${topClient.label} · ${fmt(topClient.value)}` : '–');
 
   renderStatsBarChart('statsDailyChart', buildStatsBuckets(rangeInfo, entries), {emptyText:'Keine Zeiten im gewählten Zeitraum.'});
   renderStatsBarChart('statsProjectChart', projectRows, {emptyText:'Keine Arbeitsprojekte im Zeitraum.'});
+  renderStatsBarChart('statsClientChart', clientRows, {emptyText:'Keine Kundendaten im Zeitraum.'});
 
   const weekdayNames = ['Mo','Di','Mi','Do','Fr','Sa','So'];
   const weekdayTotals = new Map(weekdayNames.map(name=>[name, 0]));
@@ -2711,7 +3093,7 @@ function updateStatsDashboard(){
     {label:'Krankenstand', value:sickMin, valueText:`${sickEntries.length} T · ${fmt(sickMin)}`, color:'linear-gradient(90deg,#fb923c,#f97316)'}
   ], {emptyText:'Keine Abwesenheiten im Zeitraum.'});
 
-  renderStatsInsights({totalMin, totalPause, targetMin, balanceMin, topProject, bestDay, vacationDays:vacationEntries.length, sickDays:sickEntries.length});
+  renderStatsInsights({totalMin, totalPause, targetMin, balanceMin, topProject, topClient, bestDay, vacationDays:vacationEntries.length, sickDays:sickEntries.length});
 }
 
 function updateInfo(){
@@ -2818,6 +3200,14 @@ if(typeof absenceType !== 'undefined' && absenceType){
 if(typeof statsRange !== 'undefined' && statsRange){
   statsRange.addEventListener('change', updateStatsDashboard);
 }
+if(typeof companyLogoInput !== 'undefined' && companyLogoInput){
+  companyLogoInput.addEventListener('change', handleCompanyLogoUpload);
+}
+document.querySelectorAll('#statsSegmentedControl .stats-segment-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>setStatsSection(btn.dataset.statsTarget));
+});
+setStatsSection(LS('activeStatsSection','overview'));
+updateCompanyLogoPreview();
 
 updateInfo();
 applyOvertimeVisibility();
@@ -2826,7 +3216,7 @@ try{ updateBackupStatusUI(); }catch(_){ }
 try{ syncEditDatePretty(); syncEditTimeDisplays(); }catch(_){ }
 if('serviceWorker' in navigator){
   window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('./sw.js?v=19').catch((error)=>console.warn('Service Worker registration failed', error));
+    navigator.serviceWorker.register('./sw.js?v=20').catch((error)=>console.warn('Service Worker registration failed', error));
   });
 }
 </script>
@@ -2871,6 +3261,7 @@ function updateBackupStatusUI(){
 async function getBackupData(){
   const settings = normalizeSettings({
     project: LS('project'),
+    client: LS('client'),
     pause: LS('pause'),
     targetDay: LS('targetDay'),
     workdays: LS('workdays'),
@@ -2878,7 +3269,11 @@ async function getBackupData(){
     pdfSignature: LS('pdfSignature'),
     pdfPauseSum: LS('pdfPauseSum'),
     pdfCompact: LS('pdfCompact'),
-    autoBackupEnabled: LS('autoBackupEnabled')
+    autoBackupEnabled: LS('autoBackupEnabled'),
+    companyName: LS('companyName'),
+    companyAddress: LS('companyAddress'),
+    companyContact: LS('companyContact'),
+    companyLogoData: LS('companyLogoData')
   });
   const entries = getNormalizedEntries().map(row=>row.entry);
   return {

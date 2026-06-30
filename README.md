@@ -1,16 +1,20 @@
 # Time Tracker PWA
 
-Eine installierbare Progressive Web App zur Arbeitszeiterfassung mit Projekten, Pausen, Monatsübersicht, Abwesenheiten und Statistik-Diagrammen.
+Eine installierbare Progressive Web App zur Arbeitszeiterfassung mit Kunden, Projekten, Pausen, Kalender-Monatsübersicht, Abwesenheiten, Statistik-Dashboard und professionellen Monatsberichten.
 
 ## Funktionen
 
 - Arbeitszeit starten/stoppen
+- Kunden- und Projektfelder für bessere Nachweise
 - Projekt-Schnellauswahl mit den letzten 10 Projekten
 - Pausenlogik mit Tagesregel
-- Monatsübersicht mit Projektfilter
+- Kalenderbasierte Monatsübersicht mit antippbaren Tagen und Detailansicht
+- Kunden- und Projektfilter in der Monatsübersicht
 - Urlaub und Krankenstand als Abwesenheiten
-- Statistik-Dashboard mit Diagrammen
-- PDF- und CSV-Export
+- Aufgeräumtes Statistik-Dashboard mit Bereichen für Überblick, Projekte, Zeiten und Abwesenheiten
+- Kunden-/Projektverteilung in der Statistik
+- Professioneller PDF-Monatsbericht mit Kunde, Projekt, Firmenprofil und optionalem Logo
+- CSV-Export
 - Offlinefähig durch Service Worker
 - Installierbar als PWA auf iOS, Android und Desktop
 
@@ -22,18 +26,19 @@ Die App enthält:
 - `sw.js`
 - App-Icons in 180, 192 und 512 px
 - relativen Pfadaufbau für GitHub Pages
+- iPhone Safe-Area-Hardening mit `viewport-fit=cover`
 - Offline-Cache für App-Shell und lokale Vendor-Dateien
 
 ## Lokal testen
 
 ```bash
-python3 -m http.server 8916
+python3 -m http.server 8917
 ```
 
 Dann öffnen:
 
 ```text
-http://127.0.0.1:8916/
+http://127.0.0.1:8917/
 ```
 
 ## Qualitätssicherung
@@ -41,6 +46,13 @@ http://127.0.0.1:8916/
 ```bash
 python3 qa/verify_time_tracker.py
 node --check sw.js
+```
+
+Zusätzlich empfiehlt sich nach UI-Änderungen:
+
+```bash
+node --check /tmp/time-tracker-phase12-scripts.js
+python3 -m json.tool manifest.webmanifest
 ```
 
 ## GitHub Pages
@@ -53,13 +65,19 @@ Branch: main
 Folder: /root
 ```
 
-Danach ist die PWA typischerweise unter folgender URL erreichbar:
+Live-PWA:
 
 ```text
-https://<github-user>.github.io/time-tracker-pwa/
+https://simon-psycho.github.io/time-tracker-pwa/
+```
+
+Repository:
+
+```text
+https://github.com/Simon-psycho/time-tracker-pwa
 ```
 
 ## Version
 
-Aktuelle App-Version: `3.0.0`
-Service Worker Cache: `time-tracker`
+Aktuelle App-Version: `3.2.0`
+Service Worker Cache: `time-tracker-v20`
