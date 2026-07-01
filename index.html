@@ -655,6 +655,16 @@
         </div>
       </section>
 
+      <section class="more-section" aria-labelledby="moreDonateTitle">
+        <div class="more-section-title">
+          <span class="more-icon" aria-hidden="true">💙</span>
+          <div><strong id="moreDonateTitle">Spenden</strong><small>Wenn dir die App hilft, kannst du Simon freiwillig unterstützen.</small></div>
+        </div>
+        <div class="more-section-actions">
+          <a id="donateButton" class="btn small-btn full" href="https://www.paypal.me/Simonpsy" target="_blank" rel="noopener noreferrer" aria-label="PayPal-Spendenseite in neuem Tab öffnen">💙 Spenden</a>
+        </div>
+      </section>
+
       <section class="more-section danger-zone" aria-labelledby="moreDangerTitle">
         <div class="more-section-title">
           <span class="more-icon" aria-hidden="true">⚠️</span>
@@ -677,7 +687,7 @@
       <div class="info-text">
         <div>Developed by Simon Kienzl</div>
         <div>E-mail: <a href="mailto:simi.k12@gmx.at">simi.k12@gmx.at</a></div>
-        <div>Version <span id="appVersion">3.2.0</span></div>
+        <div>Version <span id="appVersion">3.2.2</span></div>
       </div>
 
       <div class="modal-actions">
@@ -903,7 +913,7 @@
 </div>
 
 <script>
-const APP_VERSION = '3.2.1';
+const APP_VERSION = '3.2.2';
 function LS(key, fallback = null){
   try{
     const raw = localStorage.getItem(key);
@@ -3196,7 +3206,7 @@ try{ updateBackupStatusUI(); }catch(_){ }
 try{ syncEditDatePretty(); syncEditTimeDisplays(); }catch(_){ }
 if('serviceWorker' in navigator){
   window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('./sw.js?v=21').catch((error)=>console.warn('Service Worker registration failed', error));
+    navigator.serviceWorker.register('./sw.js?v=22').catch((error)=>console.warn('Service Worker registration failed', error));
   });
 }
 </script>

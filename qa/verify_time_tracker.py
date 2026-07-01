@@ -222,9 +222,15 @@ check('id="companyName"' in html and 'id="companyLogoInput"' in html and 'functi
 check("'Kunde'" in html and 'companyLogoData' in html and 'doc.addImage' in html,
       "professional customer/company PDF report support missing")
 
+# V3.2.2 Donate button.
+check("APP_VERSION = '3.2.2'" in html and 'sw.js?v=22' in html and 'time-tracker-v22' in sw,
+      "v3.2.2 version/service-worker bump missing")
+check('id="moreDonateTitle"' in html and 'id="donateButton"' in html and 'https://www.paypal.me/Simonpsy' in html,
+      "separate PayPal donate button missing")
+check(html.find('id="moreSettingsTitle"') != -1 and html.find('id="moreDonateTitle"') != -1 and html.find('id="moreDangerTitle"') != -1 and html.find('id="moreSettingsTitle"') < html.find('id="moreDonateTitle"') < html.find('id="moreDangerTitle"'),
+      "donate section must sit below Einstellungen & Info and above danger zone")
+
 # V3.2.1 Cleanup/fine-tuning.
-check("APP_VERSION = '3.2.1'" in html and 'sw.js?v=21' in html and 'time-tracker-v21' in sw,
-      "v3.2.1 version/service-worker bump missing")
 check('id="todayInsightCard"' not in html and 'Heute im Überblick' not in html and 'function updateTodayInsights' not in html,
       "redundant Heute im Überblick card/function still present")
 check('--toolbar-safe-bottom' in html and 'month-content' in html and 'padding-bottom:calc' in html and 'function ensureMonthDetailVisible' in html,
